@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Invoice } from '../../models/invoice.model';
 import { SharedService } from '../../services/shared.service';
 
@@ -48,6 +49,36 @@ export class InvoicesComponent implements OnInit {
 
   downloadAll() {
     this.sharedService.downloadAll(this.invoices);
+  }
+
+  downloadEmailTool() {
+    const fileUrl = './assets/console/AtmiyaInvoiceSender.exe';
+    this.downloadFile(fileUrl, `AtmiyaInvoiceSender.exe`);
+  }
+
+  downloadEmailSettings() {
+    const fileUrl = './assets/console/Settings.json';
+    this.downloadFile(fileUrl, `Settings.json`);
+  }
+
+  downloadFile(fileUrl: string, fileName: string) {
+    // Create an anchor element
+    const downloadLink = document.createElement('a');
+
+    // Set the href attribute to the file URL
+    downloadLink.href = fileUrl;
+
+    // Set the download attribute with the desired file name
+    downloadLink.download = fileName;
+
+    // Append the anchor element to the document
+    document.body.appendChild(downloadLink);
+
+    // Trigger a click event on the anchor element
+    downloadLink.click();
+
+    // Remove the anchor element from the document
+    document.body.removeChild(downloadLink);
   }
 
   convertDateStringToDate(dateString: string) {
