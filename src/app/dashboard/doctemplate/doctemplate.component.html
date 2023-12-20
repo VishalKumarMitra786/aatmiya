@@ -1,0 +1,116 @@
+<div #screen class="p-4 doc-details">
+    <div class="border border-dark p-4">
+        <div class="d-flex flex-row">
+            <img src="assets/images/am-logo.jpg" alt="Aatmiya Signature" class="rounded img-thumbnail">
+            <div class="doc-header text-center">
+                <h3>AATMIYA SIGNATURE CO-OPERATIVE HOUSING SERVICE SOCIETY LIMITED</h3>
+                <p>Near Priya Cinema Cross Roads,Tp-2, 15 Mtr.Road, Bhayli,Vadodara - 391410</p>
+                <p>Reg.No. : REG/VAD/SA(HAA)/16055/2022 Dt: 22/03/2022</p>
+            </div>
+        </div>
+        <hr>
+        <div class="doc-body">
+            <h4 class="text-decoration-underline text-center"><strong>Monthly Member's Contribution Bill</strong></h4>
+            <div class="text-left">
+                <div class="invoice-details">
+                    <p>Bill No: AS/2023-2024/{{invoice.InvoiceDateObj | date:'MMM.yy'}}/{{invoice.SrNo}}</p>
+                    <p>Date: {{invoice.InvoiceDateObj | date : 'd-MMM-y'}}</p>
+                    <p>Due Date: {{invoice.DueDateObj | date:'d-MMM-y'}}</p>
+                </div>
+                <br />
+                <br />
+                <div class="salutation">
+                    <p>To,</p>
+                    <p>{{invoice.OwnerName}}</p>
+                    <p>{{invoice.Type}} No.{{invoice.No}},Aatmiya Signature,Vadodara</p>
+                </div>
+                <br />
+                <br />
+                <p>The following are contribution charges payable by you as per resolution passed in AGM. You are
+                    requested
+                    to make payment by due date.</p>
+            </div>
+            <br />
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Sr.</th>
+                            <th scope="col" class="text-start">Particulars</th>
+                            <th scope="col" class="text-center">Duration</th>
+                            <th scope="col" class="text-end">Amount ₹</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="text-center">1</th>
+                            <td class="text-start">Monthly Maintenance Contribution</td>
+                            <td class="text-center"></td>
+                            <td class="text-end">{{invoice.Amount}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-center">2</th>
+                            <td class="text-start">Late Charges</td>
+                            <td class="text-center"></td>
+                            <td class="text-end">{{invoice.LateCharges}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-center">3</th>
+                            <td class="text-start">Any Other Charges</td>
+                            <td class="text-center"></td>
+                            <td class="text-end">{{invoice.OtherCharges}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-center">4</th>
+                            <td class="text-start">Adjustment</td>
+                            <td class="text-center"></td>
+                            <td class="text-end">{{invoice.Adjustment !== '0' ? '-' : ''}}{{invoice.Adjustment}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-center"></th>
+                            <td class="text-center"></td>
+                            <td class="text-center"><strong>Total Due</strong></td>
+                            <td class="text-end">{{invoice.total}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>E & O.E.</p>
+                <p><strong class="text-decoration-underline">Note</strong>:</p>
+                <ol>
+                    <li>Payment to be done either by Cheque or Online, screenshot of online payment to be sent on
+                        mail ID <strong>aatmiyasignature.ac&#64;gmail.com.</strong> Cash payment will be accepted in
+                        very
+                        exceptional case only.</li>
+                    <li>
+                        <p>Payment to be made by {{paymentByDay}} of the current month.</p>
+                        <div>
+                            <p class="text-decoration-underline">Applicable Penalty</p>
+                            <ul>
+                                <li>₹ 50, if payment done {{penaltyRange}}</li>
+                                <li>₹ 100, if payment by {{penaltyAfterRange}}</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>Any person providing small scale personal services like personal classes, personal care or
+                        selling of any kind of services etc. from their flat, requested to pay double the amount of
+                        maintenance.</li>
+                    <li>Any objection / error to the bill should be intimated immediately.</li>
+                </ol>
+                <p><strong class="text-decoration-underline">Bank Details for Payment</strong>:</p>
+                <p>&#11162; Account Name: <strong>AATMIYA SIGNATURE CO.OP HOUSING SERVICE SOCIETY LTD.</strong></p>
+                <p>&#11162; Account Number : <strong>10900 364 7075</strong></p>
+                <p>&#11162; Bank Name : <strong>The Baroda Central Co-operative Bank Ltd.</strong></p>
+                <p>&#11162; IFSC Code : <strong>GSCB<span class="text-decoration-underline">0</span>BRD<span
+                            class="text-decoration-underline">0</span><span class="text-decoration-underline">0</span>1
+                    </strong>(Underlined 3 digits are Zero)</p>
+                <br>
+                <p>This is Computer generated bill, no signature required</p>
+                <div class="d-flex flex-column align-items-center" *ngIf="invoice.Paid === 'Yes'">
+                    <img src="assets/images/am-stamp.jpeg" alt="Aatmiya Signature Stamp" class="rounded img-thumbnail">
+                    <h3 class="text-success">Payment Recieved on {{invoice.PaymentDateObj
+                        | date : 'd-MMM-y'}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

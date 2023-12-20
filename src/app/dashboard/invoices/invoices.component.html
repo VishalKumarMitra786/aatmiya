@@ -1,0 +1,64 @@
+<div class="p-4">
+    <div class="card w-100">
+        <div class="card-header d-flex flex-row">
+            <img src="assets/images/am-logo.jpg" alt="Aatmiya Signature" class="rounded float-left m-2 img-thumbnail">
+            <h1 class="m-2">Aatmiya Signature</h1>
+        </div>
+        <div class="card-body">
+            <div>
+                <div class="controls m-4 d-flex flex-row">
+                    <div class="custom-file m-2">
+                        <input type="file" class="custom-file-input" id="file-upload" #fileUpload
+                            (change)="selectFile($event)" />
+                        <label class="custom-file-label" for="fileUpload"></label>
+                    </div>
+
+                    <button class="btn btn-primary m-2" (click)="downloadAll()">Download All PDF</button>
+                </div>
+                <table class="table table-bordered border border-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Sr.No.</th>
+                            <th scope="col" class="text-center">Shop/Flat</th>
+                            <th scope="col" class="text-center">Shop/Flat No.</th>
+                            <th scope="col" class="text-center">Owner Name</th>
+                            <th scope="col" class="text-center">Email</th>
+                            <th scope="col" class="text-center">Invoice Date</th>
+                            <th scope="col" class="text-center">Due Date</th>
+                            <th scope="col" class="text-center">Paid</th>
+                            <th scope="col" class="text-center">Payment Date</th>
+                            <th scope="col" class="text-center">Amount</th>
+                            <th scope="col" class="text-center">Late Charges</th>
+                            <th scope="col" class="text-center">Other Charges</th>
+                            <th scope="col" class="text-center">Adjustment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let invoice of invoices">
+                            <th scope="row" class="text-center">{{invoice.SrNo}}</th>
+                            <td class="text-center">{{invoice.Type}}</td>
+                            <td class="text-center">{{invoice.No}}</td>
+                            <td class="text-center">{{invoice.OwnerName}}</td>
+                            <td class="text-center">{{invoice.Email}}</td>
+                            <td class="text-center">{{invoice.InvoiceDateObj | date : 'd-MMM-y'}}</td>
+                            <td class="text-center">{{invoice.DueDateObj | date : 'd-MMM-y'}}</td>
+                            <td class="text-center">{{invoice.Paid}}</td>
+                            <td class="text-center">{{invoice.PaymentDateObj | date : 'd-MMM-y'}}</td>
+                            <td class="text-center">{{invoice.Amount}}</td>
+                            <td class="text-center">{{invoice.LateCharges}}</td>
+                            <td class="text-center">{{invoice.OtherCharges}}</td>
+                            <td class="text-center">{{invoice.Adjustment}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ng-container *ngFor="let invoice of invoices;let i=index">
+                <div class="container-real" id="container_{{i}}">
+                    <div class="d-flex justify-content-center">
+                        <app-doctemplate [invoice]="invoice"></app-doctemplate>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

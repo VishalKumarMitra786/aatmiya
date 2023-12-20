@@ -1,0 +1,30 @@
+p {
+    line-height: 0.8 !important;
+}
+
+img {
+    height: 110px;
+    width: 110px;
+}
+
+.doc-header {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.salutation {
+    display: flex;
+    flex-direction: column;
+}
+
+.doc-details {
+    font-weight: 500;
+}
+
+table {
+    border: 1px solid !important;
+    th,td {
+        border: 1px solid !important;
+    }
+}
