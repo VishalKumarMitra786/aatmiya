@@ -75,9 +75,9 @@ export class SharedService {
           const width = pdfObj.internal.pageSize.getWidth();
           const height = pdfObj.internal.pageSize.getHeight();
           pdfObj.addImage(contentDataURL, 'JPG', 0, 0, width, height);
-          const pd = invoice.PaymentDate ? `_${invoice.PaymentDate}` : '';
+          const pd = invoice.PaymentDate ? `!${invoice.PaymentDate}` : '';
 
-          const fileName = `${invoice.Email.replace('@', '_').replace('.', '-')}_${invoice.InvoiceDate}_${invoice.Paid}_${invoice.No}${pd}.pdf`;
+          const fileName = `${invoice.Email}!${invoice.InvoiceDate}!${invoice.Paid}!${invoice.No}${pd}.pdf`;
           pdfObj.save(fileName);
           resolve(true);
         });
