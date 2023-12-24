@@ -45,25 +45,25 @@
                         <tr>
                             <th scope="row" class="text-center">1</th>
                             <td class="text-start">Monthly Maintenance Contribution</td>
-                            <td class="text-center"></td>
+                            <td class="text-center"><ng-container *ngIf="invoice.DurationM">{{invoice.DurationM}} {{invoice.DurationM > 1 ? "(Months)" : "(Month)"}}</ng-container></td>
                             <td class="text-end">{{invoice.Amount}}</td>
                         </tr>
                         <tr>
                             <th scope="row" class="text-center">2</th>
                             <td class="text-start">Late Charges</td>
-                            <td class="text-center"></td>
+                            <td class="text-center"><ng-container *ngIf="invoice.DurationL">{{invoice.DurationL}}</ng-container></td>
                             <td class="text-end">{{invoice.LateCharges}}</td>
                         </tr>
                         <tr>
                             <th scope="row" class="text-center">3</th>
                             <td class="text-start">Any Other Charges</td>
-                            <td class="text-center"></td>
+                            <td class="text-center"><ng-container *ngIf="invoice.DurationO">{{invoice.DurationO}}</ng-container></td>
                             <td class="text-end">{{invoice.OtherCharges}}</td>
                         </tr>
                         <tr>
                             <th scope="row" class="text-center">4</th>
                             <td class="text-start">Adjustment</td>
-                            <td class="text-center"></td>
+                            <td class="text-center"><ng-container *ngIf="invoice.DurationA">{{invoice.DurationA}}</ng-container></td>
                             <td class="text-end">{{invoice.Adjustment !== '0' ? '-' : ''}}{{invoice.Adjustment}}</td>
                         </tr>
                         <tr>
@@ -105,10 +105,13 @@
                     </strong>(Underlined 3 digits are Zero)</p>
                 <br>
                 <p>This is Computer generated bill, no signature required</p>
-                <div class="d-flex flex-column align-items-center" *ngIf="invoice.Paid === 'Yes'">
-                    <img src="assets/images/am-stamp.jpeg" alt="Aatmiya Signature Stamp" class="rounded img-thumbnail">
-                    <h3 class="text-success">Payment Recieved on {{invoice.PaymentDateObj
-                        | date : 'd-MMM-y'}}</h3>
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex flex-column align-items-center flex-shrink-1 border border-dark p-3" *ngIf="invoice.Paid === 'Yes'">
+                        <p><strong>RECEIPT</strong></p>
+                        <img src="assets/images/am-stamp.jpeg" alt="Aatmiya Signature Stamp" class="rounded img-thumbnail">
+                        <h3 class="text-success">Payment Recieved on {{invoice.PaymentDateObj
+                            | date : 'd-MMM-y'}}</h3>
+                    </div>
                 </div>
             </div>
         </div>

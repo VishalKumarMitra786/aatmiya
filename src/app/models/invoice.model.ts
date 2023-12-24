@@ -16,4 +16,8 @@ export interface Invoice {
     PaymentDateObj?: Date | null;
     InvoiceDateObj?: Date | null;
     DueDateObj?: Date | null;
+    DurationM: number;
+    DurationL: number;
+    DurationO: number;
+    DurationA: number;
 }
