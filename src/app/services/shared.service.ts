@@ -51,7 +51,9 @@ export class SharedService {
       } else {
         for (let i = 0; i < elements.length; i++) {
           const payslip = invoices[i];
-          await this.download(i, payslip);
+          if (payslip.Email) {
+            await this.download(i, payslip);
+          }
         }
       }
     }
